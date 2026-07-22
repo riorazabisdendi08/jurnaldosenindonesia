@@ -1,0 +1,25 @@
+# 1. Keamanan: Matikan Directory Listing secara absolut
+Options -Indexes
+Options +FollowSymLinks
+
+# 1.1 Konfigurasi API Key (Ganti nilai di bawah dengan kunci asli Anda)
+SetEnv SERPAPI_API_KEY a97bcc0992909512b60caf62afc72efc3dce572a2d73998364258099867868ea
+SetEnv LOG_ADMIN_PASS strongpassword
+
+# 2. Prioritas File Indeks
+DirectoryIndex index.php
+
+# 3. Paksa Routing ke index.php jika file/folder tidak ditemukan
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+
+    # Cegah akses ke folder tanpa index dengan mengarahkan permintaan kosong ke index.php
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^ index.php [L]
+
+    # Opsional: Memaksa HTTPS (Sangat disarankan untuk SEO)
+    RewriteCond %{HTTPS} off
+    RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+</IfModule>

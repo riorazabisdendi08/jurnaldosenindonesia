@@ -1,0 +1,15 @@
+{
+    "name": "jurnaldosen/jurnal-dosen-indonesia",
+    "description": "Mesin pencari akademik terintegrasi indeks Google Scholar untuk dosen Indonesia.",
+    "type": "project",
+    "require": {
+        "serpapi/google-search-results-php": "^2.0"
+    },
+    "authors": [
+        {
+            "name": "Jurnal Dosen Indonesia",
+            "email": "info@jurnaldosenindonesia.com"
+        }
+    ],
+    "minimum-stability": "stable"
+}

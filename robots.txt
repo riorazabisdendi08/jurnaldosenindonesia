@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /
+
+# Lindungi folder sistem dan konfigurasi
+Disallow: /config/
+Disallow: /logs/
+Disallow: /cache/
+Disallow: /scripts/
+
+# Cegah bot memicu pencarian API (menghemat kuota SerpApi)
+Disallow: /index.php?route=api/
+Disallow: /api/
+
+# Cegah indeks halaman hasil pencarian dengan parameter kueri (SEO Optimization)
+Disallow: /*?*

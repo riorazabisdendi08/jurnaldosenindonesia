@@ -1,25 +1,19 @@
-# CakePHP 3
+# Ignore local config and secrets
+/config/config.php
+/config/*.local.php
+/.env
 
-/vendor/*
-/config/app.php
+# Logs
+/logs/
+*.log
 
-/tmp/cache/models/*
-!/tmp/cache/models/empty
-/tmp/cache/persistent/*
-!/tmp/cache/persistent/empty
-/tmp/cache/views/*
-!/tmp/cache/views/empty
-/tmp/sessions/*
-!/tmp/sessions/empty
-/tmp/tests/*
-!/tmp/tests/empty
+# Node / vendor
+/node_modules/
+/vendor/
 
-/logs/*
-!/logs/empty
+# OS files
+Thumbs.db
+.DS_Store
 
-# CakePHP 2
-
-/app/tmp/*
-/app/Config/core.php
-/app/Config/database.php
-/vendors/*
+# IDE
+.vscode/
