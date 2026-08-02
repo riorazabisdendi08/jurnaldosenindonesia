@@ -2,6 +2,7 @@
     "name": "jurnaldosen/jurnal-dosen-indonesia",
     "description": "Mesin pencari akademik terintegrasi indeks Google Scholar untuk dosen Indonesia.",
     "type": "project",
+    "license": "proprietary",
     "require": {
         "serpapi/google-search-results-php": "^2.0"
     },

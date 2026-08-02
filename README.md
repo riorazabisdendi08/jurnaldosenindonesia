@@ -1,91 +1,75 @@
 # Jurnal Dosen Indonesia
 
-A search engine for Indonesian academic journals that provides various search functionalities through the SerpApi service. This application is built with a Python FastAPI backend and a modern, responsive frontend using Bootstrap.
+Mesin pencari akademik modern, cepat, dan aman yang terintegrasi dengan indeks Google Scholar untuk menyediakan hasil pencarian yang komprehensif bagi komunitas akademik di Indonesia.
 
-## Features
+## ✨ Fitur Utama
 
-- **General Search:** Perform general searches on Google Scholar.
-- **Author Search:** Get detailed information about a Google Scholar author, including their articles and citation metrics.
-- **Case Law Search:** Search for specific case law documents on Google Scholar.
-- **AI-Powered Search:** Use Google's AI mode to ask questions about an image.
-- **Modern UI:** A clean, dark-themed, and responsive user interface built with Bootstrap.
-- **Privacy-Focused:** The application acts as a proxy to SerpApi, ensuring that your search queries are not directly exposed to your browser or other third parties.
+-   **Pencarian Terintegrasi**: Menggunakan Google Scholar sebagai backend melalui SerpApi untuk hasil pencarian yang luas dan relevan.
+-   **Performa Super Cepat**:
+    -   **Server-Side Rendering (SSR)**: Hasil pencarian ditampilkan hampir seketika untuk pencarian yang dilakukan via URL, meningkatkan FCP dan LCP secara drastis.
+    -   **Caching Agresif**: Memanfaatkan cache di sisi server, browser, dan CDN (Edge) untuk waktu respons secepat kilat pada pencarian populer.
+    -   **Kompresi Gzip**: Mengurangi ukuran transfer data HTML dan JSON secara signifikan.
+    -   **Desain API Efisien**: Backend mengirimkan payload JSON yang ringkas dan sudah diproses, meminimalkan pekerjaan di sisi klien.
+-   **Pengalaman Pengguna Modern**:
+    -   **Autocomplete Instan**: Memberikan saran pencarian secara *real-time* dengan teknik *debouncing* untuk mencegah beban server berlebih.
+    -   **Navigasi Keyboard**: Dukungan penuh untuk tombol panah (atas/bawah), `Enter`, dan `Escape` pada saran pencarian.
+    -   **"Muat Lebih Banyak"**: Menggantikan paginasi tradisional untuk pengalaman *infinite scroll* yang lebih mulus tanpa memuat ulang halaman.
+    -   **Desain Bersih & Responsif**: Antarmuka minimalis yang berfokus pada fungsi pencarian dan bekerja sempurna di semua perangkat (mobile-first).
+-   **Aksesibilitas (A11y)**:
+    -   Struktur HTML semantik (misalnya, `<ul>` untuk hasil) yang ramah untuk pembaca layar (*screen readers*).
+    -   Manajemen fokus yang cerdas ("focus trap") untuk modal dan konten dinamis.
+    -   Dukungan penuh untuk navigasi menggunakan tombol Tab.
+-   **Keamanan Terdepan**:
+    -   **HTTP Security Headers**: Menerapkan CSP, HSTS, X-Frame-Options, dan lainnya untuk melindungi dari serangan web umum.
+    -   **Validasi & Sanitasi Input**: Perlindungan ketat terhadap semua input pengguna di sisi server.
+    -   **Rate Limiting**: Mencegah penyalahgunaan API oleh bot atau pengguna dengan membatasi jumlah permintaan.
+    -   **Manajemen Kunci API Aman**: Kunci API dikelola di sisi server dan tidak pernah diekspos ke klien.
+-   **Kompatibilitas Luas**: Menggunakan JavaScript modern (ES6+) dengan *polyfills* dari `polyfill.io` untuk memastikan fungsionalitas tetap berjalan di browser versi lama.
 
-## Tech Stack
+## 🚀 Teknologi
 
-- **Backend:** Python, FastAPI
-- **Frontend:** HTML, CSS, JavaScript, Bootstrap 5
-- **API:** SerpApi
+-   **Backend**: PHP 8+
+-   **Frontend**: Vanilla JavaScript (ES6+), Tailwind CSS
+-   **Dependensi**: `serpapi/google-search-results-php` (dikelola via Composer)
 
-## Prerequisites
+## 🔧 Instalasi & Konfigurasi
 
-- Python 3.10+
-- pip
-
-## Installation
-
-1.  **Clone the repository (or download the source code):**
+1.  **Clone Repositori**
     ```bash
-    git clone <repository-url>
-    cd <repository-directory>
+    git clone https://github.com/your-username/jurnal-dosen-indonesia.git
+    cd jurnal-dosen-indonesia
     ```
 
-2.  **Create and activate a virtual environment:**
-    - On Windows:
-        ```bash
-        python -m venv .venv
-        .venv\Scripts\activate
-        ```
-    - On macOS/Linux:
-        ```bash
-        python3 -m venv .venv
-        source .venv/bin/activate
-        ```
-
-3.  **Install the required packages:**
+2.  **Instal Dependensi PHP**
+    Pastikan Anda memiliki Composer terinstal.
     ```bash
-    pip install -r jurnal_dosen_indonesia/backend/requirements.txt
+    composer install
     ```
 
-4.  **Set up your environment variables:**
-    - Navigate to the `jurnal_dosen_indonesia/backend` directory.
-    - Create a file named `.env` by copying the example file:
-        ```bash
-        # On Windows
-        copy .env.example .env
+3.  **Konfigurasi Environment Variables**
+    Proyek ini menggunakan environment variables untuk menyimpan kunci API dan konfigurasi sensitif lainnya. Salin `config.example.php` menjadi `config.php` dan sesuaikan, atau lebih baik, atur environment variables di server Anda.
 
-        # On macOS/Linux
-        cp .env.example .env
-        ```
-    - Open the `.env` file and add your SerpApi API key:
-        ```
-        SERPAPI_API_KEY="your_serpapi_api_key_here"
-        ```
+    **Variabel yang Wajib Diisi:**
+    -   `SERPAPI_API_KEY`: Kunci API Anda dari SerpApi.
 
-## Usage
+    **Variabel Opsional:**
+    -   `LOG_ADMIN_USER`: Username untuk melihat panel log (default: `admin`).
+    -   `LOG_ADMIN_PASS`: Password untuk panel log (sangat disarankan untuk diatur).
 
-1.  **Start the application:**
-    - Make sure you are in the `jurnal_dosen_indonesia/backend` directory.
-    - Run the following command to start the FastAPI server:
-        ```bash
-        uvicorn main:app --reload
-        ```
+    Untuk detail lebih lanjut, lihat file `ENV_VARS.md`.
 
-2.  **Open the application in your browser:**
-    - Navigate to `http://localhost:8000` in your web browser.
+4.  **Jalankan Pemeriksa Konfigurasi (Opsional)**
+    Skrip ini akan membantu memverifikasi apakah environment variables Anda sudah terbaca dengan benar oleh PHP.
+    ```bash
+    php scripts/check_env.php
+    ```
 
-## API Endpoints
+5.  **Arahkan Web Server Anda**
+    Konfigurasikan web server Anda (Apache, Nginx, dll.) agar menunjuk ke direktori root proyek ini. Pastikan `mod_rewrite` (atau yang setara) aktif jika Anda ingin menggunakan URL yang lebih bersih di masa depan.
 
-The application exposes the following API endpoints:
+## 📄 Lisensi
 
-- `GET /api/search`: Performs a general search.
-  - **Query Parameter:** `q` (string, required) - The search query.
-- `GET /api/author/{author_id}`: Fetches author details.
-  - **Path Parameter:** `author_id` (string, required) - The Google Scholar author ID.
-- `GET /api/case_law/{case_id}`: Fetches case law details.
-  - **Path Parameter:** `case_id` (string, required) - The Google Scholar case ID.
-- `GET /api/ai_search`: Performs a Google AI Mode search.
-  - **Query Parameters:**
-    - `q` (string, required) - The question to ask.
-    - `image_url` (string, required) - The URL of the image to analyze.
-    - `subsequent_request_token` (string, optional) - For multi-turn conversations.
+Proyek ini dirilis di bawah lisensi **Proprietary**. Anda tidak diizinkan untuk mendistribusikan ulang atau memodifikasi kode tanpa izin eksplisit dari pemilik.
+
+---
+*Dibuat dan dioptimalkan dengan bantuan Gemini Code Assist.*
